@@ -1,0 +1,20 @@
+{{>layout/header}}
+<form class="container" action="/login" method="get">
+    <thead>
+    <tr>
+        <th scope="col">ID</th>
+        <th scope="col">title</th>
+        <th scope="col">content</th>
+    </tr>
+    </thead>
+    <tbody>
+    {{#member}}
+        <tr>
+            <th>{{name}}</th>
+            <td>{{email}}</td>
+        </tr>
+    {{/member}}
+    </tbody>
+    <button type="submit" class="btn btn-primary">log out</button>
+</form>
+{{>layout/footer}}
