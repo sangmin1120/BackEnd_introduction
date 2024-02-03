@@ -1,20 +1,30 @@
 {{>layout/header}}
 <form class="container" action="/login" method="get">
-    <thead>
-    <tr>
-        <th scope="col">ID</th>
-        <th scope="col">title</th>
-        <th scope="col">content</th>
-    </tr>
-    </thead>
+    <h1>프로필 수정</h1>
     <tbody>
     {{#member}}
-        <tr>
-            <th>{{name}}</th>
-            <td>{{email}}</td>
-        </tr>
+        <div class="mb-3 row">
+            <label for="staticEmail" class="col-sm-2 col-form-label">이름</label>
+            <div class="col-sm-10">
+                <input type="text" readonly class="form-control-plaintext" id="staticEmail" value={{name}}>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
+            <div class="col-sm-10">
+                <input type="text" readonly class="form-control-plaintext" id="staticEmail" value={{email}}>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+            <div class="col-sm-10">
+                <input type="password" class="form-control" id="inputPassword">
+                <button type="submit" class="btn btn-primary">비빌번호 변경</button>
+            </div>
+        </div>
     {{/member}}
     </tbody>
     <button type="submit" class="btn btn-primary">log out</button>
+    <button type="submit" class="btn btn-primary">게시물 보러가기</button>
 </form>
 {{>layout/footer}}
