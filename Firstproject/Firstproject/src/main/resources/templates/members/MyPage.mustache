@@ -4,10 +4,12 @@
     <tbody>
     {{#member}}
         <div class="mb-3 row">
+            </div><div class="col-sm-10">
+                <input type="hidden" readonly class="form-control-plaintext" id="staticID" value={{id}}>
+            </div>
             <label for="staticEmail" class="col-sm-2 col-form-label">이름</label>
             <div class="col-sm-10">
-                <input type="text" readonly class="form-control-plaintext" id="staticEmail" value={{name}}>
-            </div>
+                <input type="text" readonly class="form-control-plaintext" id="staticName" value={{name}}>
         </div>
         <div class="mb-3 row">
             <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
@@ -19,12 +21,42 @@
             <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
             <div class="col-sm-10">
                 <input type="password" class="form-control" id="inputPassword">
-                <button type="submit" class="btn btn-primary">비빌번호 변경</button>
+                <button type="button" class="password-edit">비빌번호 변경</button>
             </div>
         </div>
     {{/member}}
     </tbody>
     <button type="submit" class="btn btn-primary">log out</button>
-    <button type="submit" class="btn btn-primary">게시물 보러가기</button>
+    <a href="/articles">게시물 보러가기</a>
 </form>
 {{>layout/footer}}
+// 비밀번호 변경
+<script>
+    // 버튼 선택
+    const passwordEdit = document.querySelector(".password-edit");
+    // 이벤트 리스너
+    passwordEdit.addEventListener("click", function() {
+        const member = {
+            name: document.querySelector("#staticName").value,
+            email: document.querySelector("#staticEmail").value,
+            password: document.querySelector("#inputPassword").value
+        };
+        console.log(member);
+        const id = document.querySelector("#staticID").value;
+        const url = "/api/members/" + id;
+
+        fetch(url,{
+            method: "PATCH", // PATCH 요청
+            headers:{ // 전송 데이터 타입 정보
+                "Content-Type":"application/json"
+            },
+            body: JSON.stringify(member) // comment 객체를 JSON 문자열로 변환 전송
+        }).then(response => {
+            // HTTP 응답 코드에 따른 메시지 출력
+            const msg = (response.ok) ? "비밀번호가 변경됐습니다.":"비밀번호 변경 실패..!";
+            alert(msg);
+<!--            // 현재 페이지 새로 고침-->
+<!--            window.location.reload();-->
+        });
+    });
+</script>
