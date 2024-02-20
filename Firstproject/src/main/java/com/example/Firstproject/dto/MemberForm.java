@@ -1,5 +1,6 @@
 package com.example.Firstproject.dto;
 
+import com.example.Firstproject.entity.Article;
 import com.example.Firstproject.entity.Member;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
